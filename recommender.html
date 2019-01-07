@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Billboard Hot 100 Recommender</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-quarter img{margin-bottom: -6px; cursor: pointer}
+.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+.w3-center img:hover{opacity: 0.6; transition: 0.3s}
+</style>
+<body class="w3-light-grey">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
+  <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">RECOMMENDER</a> 
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT ME</a>
+  <!-- 
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+-->
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <span class="w3-left w3-padding">Billboard Hot 100 Recommender</span>
+  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+  
+
+
+  <!-- Top Song (large image) -->
+  <div class="w3-grayscale-min w3-center">
+
+    <img src="https://i.scdn.co/image/5026fddc6c0b69e931ae99130f15d4214f1e7d41" style="width:30%" onclick="onClick(this)" alt= 'Khalid - Location' id='main_image_box'>
+    <br>
+    
+    <audio src="https://p.scdn.co/mp3-preview/d50dfb78af7cb29f6363ba1a0d2cbdd707ee137c?cid=39cc01d4b4a544ebad4e813e7190e606" id='main_song_box_preview_url' controls>
+    <p>If you are reading this, it is because your browser does not support the audio element.</p>
+    </audio>
+
+  </div>
+
+  <div class="w3-center w3-padding-32">
+    
+    <!-- Input for end-user to enter artist - track -->
+      <div class="w3-row-padding">
+            
+        <div class="w3-half">
+          <label>Artist Name</label>
+          <input class="w3-input w3-border" name='artist' type="text" placeholder="Khalid" id='artist_input'>
+        </div>
+        <div class="w3-half">
+          <label>Track Title</label>
+          <input class="w3-input w3-border" name='track_title' type="text" placeholder="Location" id='track_input'>
+        </div>
+      </div>
+
+
+      <!-- Button to Update Album Covers -->
+      <p></p>
+      <button class="w3-button w3-black" onclick="update_album_covers()">Update Recommendation</button>
+    
+  </div>
+
+
+  <!-- Photo grid -->
+  <div class="w3-row w3-grayscale-min w3-animate-opacity">
+    <div class="w3-quarter">
+      <img src="https://i.scdn.co/image/5026fddc6c0b69e931ae99130f15d4214f1e7d41" style="width:100%" onclick="onClick(this)" alt="Canoeing again" id="image_box_1">
+
+      <div class="w3-center">
+
+        <audio src="https://p.scdn.co/mp3-preview/d50dfb78af7cb29f6363ba1a0d2cbdd707ee137c?cid=39cc01d4b4a544ebad4e813e7190e606" id='image_1_box_preview_url' controls>
+        <p>If you are reading this, it is because your browser does not support the audio element.</p>
+        </audio>
+    </div>
+      
+   </div>
+    
+   <div class="w3-quarter">
+      <img src="https://i.scdn.co/image/5026fddc6c0b69e931ae99130f15d4214f1e7d41" style="width:100%" onclick="onClick(this)" alt="A girl, and a train passing" id="image_box_2">
+
+      <div class="w3-center">
+
+        <audio src="https://p.scdn.co/mp3-preview/d50dfb78af7cb29f6363ba1a0d2cbdd707ee137c?cid=39cc01d4b4a544ebad4e813e7190e606" id='image_2_box_preview_url' controls>
+        <p>If you are reading this, it is because your browser does not support the audio element.</p>
+        </audio>
+      </div>
+      
+    </div>
+    
+    <div class="w3-quarter">
+      <img src="https://i.scdn.co/image/5026fddc6c0b69e931ae99130f15d4214f1e7d41" style="width:100%" onclick="onClick(this)" alt="Waiting for the bus in the desert" id="image_box_3">
+
+      <div class="w3-center">
+
+        <audio src="https://p.scdn.co/mp3-preview/d50dfb78af7cb29f6363ba1a0d2cbdd707ee137c?cid=39cc01d4b4a544ebad4e813e7190e606" id='image_3_box_preview_url' controls>
+        <p>If you are reading this, it is because your browser does not support the audio element.</p>
+        </audio>
+
+      </div>
+     
+    </div>
+
+    <div class="w3-quarter">
+      <img src="https://i.scdn.co/image/5026fddc6c0b69e931ae99130f15d4214f1e7d41" style="width:100%" onclick="onClick(this)" alt="A boy surrounded by beautiful nature" id="image_box_4">
+
+      <div class="w3-center">
+
+        <audio src="https://p.scdn.co/mp3-preview/d50dfb78af7cb29f6363ba1a0d2cbdd707ee137c?cid=39cc01d4b4a544ebad4e813e7190e606" id='image_4_box_preview_url' controls>
+        <p>If you are reading this, it is because your browser does not support the audio element.</p>
+        </audio>
+      
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  
+  
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption">test 123</p>
+    </div>
+  </div>
+
+  <!-- About section -->
+  <div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">
+    <h4><b>About Me</b></h4>
+    <img src="https://www.tatacliq.com/que/wp-content/uploads/2016/10/wireless-headphone.jpg" alt="Me" class="w3-image w3-padding-32" width="600" height="650">
+    <div class="w3-content w3-justify" style="max-width:600px">
+      <h4>Steven Au-Yeung</h4>
+      <p>Music is life.</p>
+
+      </div>
+    </div>
+  </div>
+  
+
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-32 w3-grey">  
+    <div class="w3-row-padding">
+      <div class="w3-third">
+        <h3>INFO</h3>
+        <p>Content-Based Recommender for Billboard Hot 100 music. Per selected song, recommender outputs four songs that are similar both lyrically 
+           as well as other audio features (e.g. loudness) </p>      
+      </div>
+    
+      <div class="w3-third">
+        <h3>CONTACT</h3>
+        <!-- <p> Coming Soon...</p> -->
+        <p>mail: steven.auyeung29@gmail.com</p>
+        <p>GitHub: https://github.com/stevay</p>
+        <p>LinkedIn: www.linkedin.com/in/stevenauyeung</p>
+       
+
+      </div>
+
+      <div class="w3-third">
+        <h3>POPULAR TAGS</h3>
+        <p>
+          <span class="w3-tag w3-black w3-margin-bottom">Music</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Billboard Hot 100</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Recommender</span>
+          <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Audio Features</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Spotify API</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">PyLyrics</span>
+          <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Data Science</span> <span class="w3-tag w3-dark-grey w3-small w3-margin-bottom">Data Analysis</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div> -->
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+// Script to update album covers
+function update_album_covers() {
+    
+    var artist_name = document.getElementById('artist_input').value;
+    var track_name = document.getElementById('track_input').value;
+
+    $.ajax({
+
+    type: "POST",
+    contentType: "application/json; charset=utf-8",
+    url: "/score",
+    dataType: "json",
+
+    data: JSON.stringify({
+      "artist" : artist_name,
+      "track" : track_name
+    }),
+
+    success: function (results) {
+           //var cover_main = results['album_art'];
+           //var preview_main = results['preview_url'];
+           //var artist_main = results['artist'];
+           //var title_main = results['title']
+           console.log(results);
+           
+
+           // update album cover images
+           document.getElementById('main_image_box').src = results['0'][0];
+           document.getElementById('main_song_box_preview_url').src = results['0'][1];
+           document.getElementById('main_image_box').alt = 'Artist - ' + results['0'][2] + '<br> Title - ' + results['0'][3] + 
+                                                            '<br> Genre - ' + results['0'][4] + 
+                                                            '<br> Year - ' + results['0'][16] +
+                                                            '<br><br><u>Song Lyrics Stats</u><br>'+
+                                                            '<br> Number of Words: ' + results['0'][5] +
+                                                            '<br> Number of Syllables: ' + results['0'][6] + 
+                                                            '<br> Number of Difficult Words: ' + results['0'][7] + 
+                                                            '<br> Fisch-Kincaid Grade Level: ' + results['0'][8] + 
+                                                            '<br> Sentiment Score: ' + results['0'][9] + 
+                                                            
+                                                            '<br><br><u>Spotify Audio Features</u><br>' + 
+                                                            '<br> Tempo:  ' + results['0'][10] + ' BPM' +
+                                                            '<br> Acousticness:  ' + results['0'][11] + 
+                                                            '<br> Instrumentalness:  ' + results['0'][12] + 
+                                                            '<br> Loudness:  ' + results['0'][13] + ' dB' + 
+                                                            '<br> Speechiness:  ' + results['0'][14] + 
+                                                            '<br> Valence:  ' + results['0'][15];
+
+           // update similar songs
+           // track 1
+           document.getElementById("image_box_1").src = results['1'][0];
+           document.getElementById("image_1_box_preview_url").src = results['1'][1];
+           document.getElementById("image_box_1").alt = 'Artist - ' + results['1'][2] + '<br> Title - ' + results['1'][3] + 
+                                                            '<br> Genre - ' + results['1'][4] + 
+                                                            '<br> Year - ' + results['1'][16] +
+                                                            '<br><br><u>Song Lyrics Stats</u><br>'+
+                                                            '<br> Number of Words: ' + results['1'][5] +
+                                                            '<br> Number of Syllables: ' + results['1'][6] + 
+                                                            '<br> Number of Difficult Words: ' + results['1'][7] + 
+                                                            '<br> Fisch-Kincaid Grade Level: ' + results['1'][8] + 
+                                                            '<br> Sentiment Score: ' + results['1'][9] + 
+                                                            
+                                                            '<br><br><u>Spotify Audio Features</u><br>' + 
+                                                            '<br> Tempo: ' + results['1'][10] + ' BPM' +
+                                                            '<br> Acousticness: ' + results['1'][11] + 
+                                                            '<br> Instrumentalness: ' + results['1'][12] + 
+                                                            '<br> Loudness: ' + results['1'][13] + ' dB' + 
+                                                            '<br> Speechiness: ' + results['1'][14] + 
+                                                            '<br> Valence: ' + results['1'][15];
+           
+
+
+
+           document.getElementById("image_box_2").src = results['2'][0];
+           document.getElementById("image_2_box_preview_url").src = results['2'][1];
+           document.getElementById("image_box_2").alt = 'Artist - ' + results['2'][2] + '<br> Title - ' + results['2'][3] + 
+                                                            '<br> Genre - ' + results['2'][4] + 
+                                                            '<br> Year - ' + results['2'][16] +
+                                                            '<br><br><u>Song Lyrics Stats</u><br>'+
+                                                            '<br> Number of Words: ' + results['2'][5] +
+                                                            '<br> Number of Syllables: ' + results['2'][6] + 
+                                                            '<br> Number of Difficult Words: ' + results['2'][7] + 
+                                                            '<br> Fisch-Kincaid Grade Level: ' + results['2'][8] + 
+                                                            '<br> Sentiment Score: ' + results['2'][9] + 
+                                                            
+                                                            '<br><br><u>Spotify Audio Features</u><br>' + 
+                                                            '<br> Tempo: ' + results['2'][10] + ' BPM' +
+                                                            '<br> Acousticness: ' + results['2'][11] + 
+                                                            '<br> Instrumentalness: ' + results['2'][12] + 
+                                                            '<br> Loudness: ' + results['2'][13] + ' dB' + 
+                                                            '<br> Speechiness: ' + results['2'][14] + 
+                                                            '<br> Valence: ' + results['2'][15];
+
+
+           document.getElementById("image_box_3").src = results['3'][0];
+           document.getElementById("image_3_box_preview_url").src = results['3'][1];
+           document.getElementById("image_box_3").alt = 'Artist - ' + results['3'][2] + '<br> Title - ' + results['3'][3] + 
+                                                            '<br> Genre - ' + results['3'][4] + 
+                                                            '<br> Year - ' + results['3'][16] +
+                                                            '<br><br><u>Song Lyrics Stats</u><br>'+
+                                                            '<br> Number of Words: ' + results['3'][5] +
+                                                            '<br> Number of Syllables: ' + results['3'][6] + 
+                                                            '<br> Number of Difficult Words: ' + results['3'][7] + 
+                                                            '<br> Fisch-Kincaid Grade Level: ' + results['3'][8] + 
+                                                            '<br> Sentiment Score: ' + results['3'][9] + 
+                                                            
+                                                            '<br><br><u>Spotify Audio Features</u><br>' + 
+                                                            '<br> Tempo: ' + results['3'][10] + ' BPM' +
+                                                            '<br> Acousticness: ' + results['3'][11] + 
+                                                            '<br> Instrumentalness: ' + results['3'][12] + 
+                                                            '<br> Loudness: ' + results['3'][13] + ' dB' + 
+                                                            '<br> Speechiness: ' + results['3'][14] + 
+                                                            '<br> Valence: ' + results['3'][15];
+
+
+
+           document.getElementById("image_box_4").src = results['4'][0];
+           document.getElementById("image_4_box_preview_url").src = results['4'][1];
+           document.getElementById("image_box_4").alt = 'Artist - ' + results['4'][2] + '<br> Title - ' + results['4'][3] + 
+                                                            '<br> Genre - ' + results['4'][4] + 
+                                                            '<br> Year - ' + results['4'][16] +
+                                                            '<br><br><u>Song Lyrics Stats</u><br>'+
+                                                            '<br> Number of Words: ' + results['4'][5] +
+                                                            '<br> Number of Syllables: ' + results['4'][6] + 
+                                                            '<br> Number of Difficult Words: ' + results['4'][7] + 
+                                                            '<br> Fisch-Kincaid Grade Level: ' + results['4'][8] + 
+                                                            '<br> Sentiment Score: ' + results['4'][9] + 
+                                                            
+                                                            '<br><br><u>Spotify Audio Features</u><br>' +
+                                                            '<br> Tempo: ' + results['4'][10] + ' BPM' + 
+                                                            '<br> Acousticness: ' + results['4'][11] + 
+                                                            '<br> Instrumentalness: ' + results['4'][12] + 
+                                                            '<br> Loudness: ' + results['4'][13] + ' dB' + 
+                                                            '<br> Speechiness: ' + results['4'][14] + 
+                                                            '<br> Valence: ' + results['4'][15];;
+
+           
+         },
+
+
+    error: function(e) {
+      console.log(e);
+    }
+    
+    });
+
+    // clear input fields
+    document.getElementById("artist_input").value = ''
+    document.getElementById("artist_input").placeholder = 'type here'
+    document.getElementById("track_input").value = ''
+    document.getElementById("track_input").placeholder = 'type here'
+
+
+
+}
+
+
+
+</script>
+
+
+</body>
+</html>
